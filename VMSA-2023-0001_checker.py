@@ -66,7 +66,7 @@ for t in ['sa1','sa2','sadc']:
 print()
 
 print("[i] Checking for unusual cron files.")
-cron_files = {'daily':['audit-rotate'],'hourly':['0anacron','logrotate'], 'weekly':['devcheck','rpmcheck','sgidcheck','suidcheck']}
+cron_files = {'d':['0hourly','dailyjobs','li-stats','sysstat','timesync'],'daily':['audit-rotate'],'hourly':['0anacron','logrotate'], 'weekly':['devcheck','rpmcheck','sgidcheck','suidcheck']}
 for cron_int in cron_files.keys():
     for fil in os.listdir('/etc/cron.'+cron_int):
         if fil not in cron_files[cron_int]:
@@ -75,4 +75,4 @@ for cron_int in cron_files.keys():
 
 for cron_int in cron_files.keys():
     for cronf in cron_files[cron_int]:
-        check_mtimes(['/etc/cron.hourly','/etc/cron.daily','/etc/cron.monthly','/etc/cron.weekly'],cronf)
+        check_mtimes(['/etc/cron.d','/etc/cron.hourly','/etc/cron.daily','/etc/cron.monthly','/etc/cron.weekly'],cronf)
